@@ -1,3 +1,5 @@
+extern crate indextree;
+use indextree::Arena;
 use std::boxed::Box;
 use std::collections::HashMap;
 use std::io::BufRead;
@@ -8,15 +10,8 @@ pub enum ScoringMethod {
 }
 
 pub struct Dict {
-	sections: HashMap<char, Node>,
+	sections: HashMap<char, Arena<char>>,
 	scoring_method: ScoringMethod,
-}
-
-type SubNode = Option<Box<Node>>;
-
-struct Node {
-	char: char,
-	dict: HashMap<char, SubNode>,
 }
 
 impl Dict {
@@ -42,18 +37,6 @@ impl Dict {
 
 	fn contains(self, word: String) -> bool {
 		unimplemented!();
-	}
-
-	fn add_word(mut root: Node, word: String) {
-		if word.len() > 0 {
-			let word_chars = word.as_str().chars().next().unwrap();
-		}
-
-		unimplemented!();
-	}
-
-	fn add_chars_to_node(mut root: Node, chars: Vec<char>) {
-		let mut current = root;
 	}
 }
 
